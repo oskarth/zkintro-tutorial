@@ -3,7 +3,8 @@
 echo "Performing trusted setup..."
 
 # Working directory
-cd example/build
+mkdir -p example/target/ptau
+cd example/target/ptau
 
 echo "Phase 1 of the trusted setup..."
 
@@ -20,12 +21,12 @@ echo "Phase 2 of the trusted setup..."
 snarkjs powersoftau prepare phase2 pot12_0001.ptau pot12_final.ptau -v
 
 # Generate a zkey file
-snarkjs groth16 setup example.r1cs pot12_final.ptau example_0000.zkey
+snarkjs groth16 setup ../example.r1cs pot12_final.ptau example_0000.zkey
 
 # Contribute to phase 2
-snarkjs zkey contribute example_0000.zkey example_0001.zkey --name="Foo" -v
+snarkjs zkey contribute example_0000.zkey ../example_0001.zkey --name="Foo" -v
 
 # Export verification key
-snarkjs zkey export verificationkey example_0001.zkey verification_key.json
+snarkjs zkey export verificationkey ../example_0001.zkey ../verification_key.json
 
 echo "Trusted setup completed."
