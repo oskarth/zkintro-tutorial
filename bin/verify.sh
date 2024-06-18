@@ -5,6 +5,8 @@ echo "Verifying the proof..."
 # Working directory
 cd example/target
 
-snarkjs groth16 verify verification_key.json public.json proof.json
-
-echo "Proof verified."
+if snarkjs groth16 verify verification_key.json public.json proof.json; then
+    echo "Proof verified."
+else
+    echo "Proof verification failed."
+fi
