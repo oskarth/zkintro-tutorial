@@ -1,17 +1,27 @@
 #!/bin/bash
 
-echo "Generating the proof..."
+set -euo pipefail
 
-# Copy input.json to the build directory
-cp example/input.json example/target
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <zkey_path> <wasm_path> <input_json_path>"
+    exit 1
+fi
 
-# Working directory
-cd example/target
+ZKEY_PATH=$1
+WASM_PATH=$2
+INPUT_JSON_PATH=$3
+EXAMPLE_NAME=$(basename "$WASM_PATH" .wasm)
+TARGET_DIR=$(dirname "$ZKEY_PATH")
+WITNESS_PATH=$TARGET_DIR/witness.wtns
+
+echo "Generating the proof for $EXAMPLE_NAME..."
 
 # Generate the witness
-node example_js/generate_witness.js example_js/example.wasm input.json witness.wtns
+node utils/generate_witness.js $WASM_PATH $INPUT_JSON_PATH $WITNESS_PATH
 
 # Generate the proof
-snarkjs groth16 prove example_0001.zkey witness.wtns proof.json public.json
+snarkjs groth16 prove $ZKEY_PATH $WITNESS_PATH $TARGET_DIR/proof.json $TARGET_DIR/public.json
 
 echo "Proof generated."
+echo "Proof: $TARGET_DIR/proof.json"
+echo "Public output: $TARGET_DIR/public.json"
