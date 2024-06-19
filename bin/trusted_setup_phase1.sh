@@ -4,6 +4,8 @@
 # Requires: target_directory for storing the ceremony artifact.
 # Produces: ptau/pot12.ptau - Powers of tau file after Phase 1.
 
+set -euo pipefail
+
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <target_directory>"
     exit 1

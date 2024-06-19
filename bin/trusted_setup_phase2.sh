@@ -4,6 +4,8 @@
 # Requires two arguments: <path_to_ptau_file> <path_to_r1cs_file>
 # Produces: Verification key JSON file for the R1CS file.
 
+set -euo pipefail
+
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <path_to_ptau_file> <path_to_r1cs_file>"
     exit 1

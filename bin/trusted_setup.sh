@@ -4,6 +4,8 @@
 # It requires a single argument: the path to the R1CS file.
 # The script performs both Phase 1 and Phase 2 of the trusted setup.
 
+set -euo pipefail
+
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <path_to_r1cs_file>"
     exit 1

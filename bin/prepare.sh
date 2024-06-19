@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Directory to install Circom
 read -p "Enter directory to install Circom (default: \$HOME/circom): " CIRCOM_INSTALL_DIR
 CIRCOM_INSTALL_DIR=${CIRCOM_INSTALL_DIR:-"$HOME/circom"}
