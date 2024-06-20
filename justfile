@@ -16,10 +16,16 @@ generate_proof example:
         {{example}}/target/{{example}}_js/{{example}}.wasm \
         {{example}}/input.json
 
-#
+verify_proof example:
+    ./bin/verify_proof.sh {{example}}/target/{{example}}_verification_key.json \
+        {{example}}/target/public.json \
+        {{example}}/target/proof.json
+
 # Define a task to run all steps sequentially for a specific example
 all example:
     just prepare
     just build {{example}}
     just trusted_setup {{example}}
-    just prove {{example}}/target/{{example}}_0001.zkey {{example}}/target/{{example}}.wasm {{example}}/input.json
+    just trusted_setup_phase2 {{example}}
+    just generate_proof {{example}}
+    just verify_proof {{example}}
