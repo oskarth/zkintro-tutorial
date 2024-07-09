@@ -18,8 +18,8 @@ PTAU_FILE="ptau/pot12.ptau"
 
 echo "Performing trusted setup..."
 
-./bin/trusted_setup_phase1.sh "$TARGET_DIR"
-./bin/trusted_setup_phase2.sh "$PTAU_FILE" "$R1CS_FILE"
+./scripts/trusted_setup_phase1.sh "$TARGET_DIR"
+./scripts/trusted_setup_phase2.sh "$PTAU_FILE" "$R1CS_FILE"
 
 echo "Trusted setup completed."
 echo "zkey proving key: $TARGET_DIR/${R1CS_BASENAME}_0001.zkey"

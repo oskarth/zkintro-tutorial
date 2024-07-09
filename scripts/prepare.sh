@@ -66,7 +66,7 @@ maybe_install_circom() {
 
 # Main function to orchestrate the installation
 main() {
-    ./bin/install_just.sh
+    ./scripts/install_just.sh
     install_rust
     maybe_install_circom
     install_snarkjs

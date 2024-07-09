@@ -10,7 +10,7 @@ Replace `example` with one of the examples, such as `example` or `example2`.
 
 ```
 # Install dependencies (`just`, `rust`, `circom`, `snarkjs`)
-./bin/prepare.sh
+./scripts/prepare.sh
 
 # Build circuit
 just build example
