@@ -34,3 +34,5 @@ snarkjs zkey contribute "${R1CS_BASENAME}_0000.zkey" "${R1CS_BASENAME}_0001.zkey
 snarkjs zkey export verificationkey "${R1CS_BASENAME}_0001.zkey" "${R1CS_BASENAME}_verification_key.json"
 
 echo "Phase 2 of the trusted setup completed."
+echo "zkey proving key: $TARGET_DIR/${R1CS_BASENAME}_0001.zkey"
+echo "verification key: $TARGET_DIR/${R1CS_BASENAME}_verification_key.json"
