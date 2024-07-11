@@ -14,6 +14,11 @@ fi
 CIRCOM_FILE=$1
 TARGET_DIR=$(dirname "$CIRCOM_FILE")/target
 
+if [ -f "$(dirname "$CIRCOM_FILE")/package.json" ]; then
+    echo "package.json found, running npm install..."
+    npm install --prefix "$(dirname "$CIRCOM_FILE")"
+fi
+
 echo "Building $CIRCOM_FILE circuit..."
 mkdir -p "$TARGET_DIR"
 circom "$CIRCOM_FILE" --r1cs --wasm --output "$TARGET_DIR"
