@@ -8,6 +8,8 @@ These instructions should work for OSX and most Linux distributions. If you use 
 
 Replace `example` with one of the examples, such as `example` or `example2`.
 
+*NOTE: The current `circom` circuits are unfinished. To build them they need to be completed; see files named `*-solution.circom`.*
+
 ```
 # Install dependencies (`just`, `rust`, `circom`, `snarkjs`)
 ./scripts/prepare.sh
