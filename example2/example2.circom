@@ -1,17 +1,15 @@
 pragma circom 2.0.0;
 
-include "node_modules/circomlib/circuits/comparators.circom";
+// TODO: Include comparators.circom from circomlib to access the `IsZero` component
 
 template Multiplier2Alt () {
   signal input a;
   signal input b;
   signal output c;
 
-  // If either a or b is 1, in is 0
-  // We check that in is not 0
-  component isZeroCheck = IsZero();
-  isZeroCheck.in <== (a - 1) * (b - 1);
-  isZeroCheck.out === 0;
+  // TODO: Declare the `IsZero` component
+  // TODO: If either a or b is 1, input `in` to it should be 0
+  // TODO: Make sure output `out` is 0 (false)
 
   c <== a * b;
 }
