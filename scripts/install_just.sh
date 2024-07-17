@@ -43,6 +43,7 @@ install_linux() {
 # Check if just is already installed
 check_just_installed
 
+
 # Detect operating system
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
@@ -50,4 +51,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         install_macos
     else
         echo "Error: Homebrew not found. Please install Homebrew first."
-        exit
+        exit 1
+    fi
+else
+    # Linux
+    install_linux
+fi
