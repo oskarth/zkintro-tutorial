@@ -12,7 +12,9 @@ if [ "$#" -ne 1 ]; then
 fi
 
 CIRCOM_FILE=$1
-TARGET_DIR=$(dirname "$CIRCOM_FILE")/target
+WORKING_DIR=$(dirname "$CIRCOM_FILE")
+TARGET_DIR=$WORKING_DIR/target
+LIB_DIR=$WORKING_DIR/node_modules
 
 if [ -f "$(dirname "$CIRCOM_FILE")/package.json" ]; then
     echo "package.json found, running npm install..."
@@ -21,4 +23,4 @@ fi
 
 echo "Building $CIRCOM_FILE circuit..."
 mkdir -p "$TARGET_DIR"
-circom "$CIRCOM_FILE" --r1cs --wasm --output "$TARGET_DIR"
+circom "$CIRCOM_FILE" -l "$LIB_DIR" --r1cs --wasm --output "$TARGET_DIR"
