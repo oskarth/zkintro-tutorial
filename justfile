@@ -26,6 +26,9 @@ verify_proof example:
         {{example}}/target/public.json \
         {{example}}/target/proof.json
 
+generate_identity:
+    ./scripts/generate_identity.sh
+
 # Run all steps for a specific example
 all example:
     just prepare
