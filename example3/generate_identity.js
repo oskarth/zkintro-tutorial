@@ -1,25 +1,21 @@
 const circomlibjs = require('circomlibjs');
 const crypto = require('crypto');
 
-// Function to generate a random field element
-function generateRandomFieldElement() {
-    const buffer = crypto.randomBytes(32);
-    return BigInt('0x' + buffer.toString('hex'));
+// Generate a random secret
+function generateRandomSecret() {
+    return BigInt('0x' + crypto.randomBytes(32).toString('hex'));
 }
 
-// Generate identity_secret
-const identity_secret = generateRandomFieldElement();
-console.log('identity_secret:', identity_secret.toString());
-
-// Generate identity_commitment using Poseidon hash
-async function generateIdentityCommitment(secret) {
+// Generate identity secret and commitment
+async function generateIdentity() {
+    const identitySecret = generateRandomSecret();
     const poseidon = await circomlibjs.buildPoseidon();
-    const poseidonHash = poseidon.F.toString(poseidon([secret]));
-    return poseidonHash;
+    const identityCommitment = poseidon.F.toString(poseidon([identitySecret]));
+
+    console.log('identity_secret:', identitySecret.toString());
+    console.log('identity_commitment:', identityCommitment);
 }
 
-generateIdentityCommitment(identity_secret).then(identity_commitment => {
-    console.log('identity_commitment:', identity_commitment);
-}).catch(err => {
-    console.error('Error generating identity_commitment:', err);
+generateIdentity().catch(err => {
+    console.error('Error generating identity:', err);
 });
