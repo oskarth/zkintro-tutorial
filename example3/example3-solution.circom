@@ -9,9 +9,8 @@ template SignMessage () {
   signal output signature;
 
   // Identity commitment
-  component identityHasher = Poseidon(2);
+  component identityHasher = Poseidon(1);
   identityHasher.inputs[0] <== identity_secret;
-  identityHasher.inputs[1] <== 0;
   identity_commitment === identityHasher.out;
 
   // Signature
