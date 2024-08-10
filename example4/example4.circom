@@ -21,15 +21,8 @@ template SignMessage (n) {
 
   // Membership check
   // Assuming three identities in total
-  // Checking if (myId - id0)(myId - id1)(myId - id2)... === 0
-  signal temp[n];
-  temp[0] <== myIdentity - identity_commitments[0];
-  for (var i = 1; i < n; i++) {
-    temp[i] <== temp[i-1] * (myIdentity - identity_commitments[i]);
-  }
-
-  // Enforce that myIdentity is among the identity_commitments
-  temp[n-1] === 0;
+  // TODO: Implement membership check
+  // NOTE: We want to prove that our identity is one of the three
 }
 
 component main {public [identity_commitments, message]} = SignMessage(3);
